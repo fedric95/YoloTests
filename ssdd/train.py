@@ -10,10 +10,9 @@ model = model.load('yolov8n.pt') # Transfer weights
 model.train(
     data='./dataset.yaml',
     epochs=20,
-    imgsz=640,
-    hsv_h = 0,
-    hsv_s = 0,
-    hsv_v = 0
+    imgsz=512,
+    workers=0,
+    batch = 16
 )
 
 import pdb
