@@ -11,12 +11,13 @@ model = model.load('yolov8n.pt') # Transfer weights
 # Train the model
 model.train(
     data='./dataset.yaml',
-    epochs=20,
+    epochs=100,
     imgsz=640,
-    batch = 64
+    batch = 128,
+    device= [0,1],
+    amp = True
 )
 
-pdb.set_trace()
 
 # Evaluate the model's performance on the validation set
 results = model.val()

@@ -775,16 +775,19 @@ def v8_transforms(dataset, imgsz, hyp, stretch=False):
     #        pre_transform=None if stretch else LetterBox(new_shape=(imgsz, imgsz)),
     #    )])
     pre_transform = Compose([
-        Mosaic(dataset, imgsz=imgsz, p=hyp.mosaic),
-        CopyPaste(p=hyp.copy_paste),
-        RandomPerspective(
-            degrees=0,
-            translate=hyp.translate,
-            scale=0,
-            shear=0,
-            perspective=0,
-            pre_transform=None if stretch else LetterBox(new_shape=(imgsz, imgsz))
-        )])
+        #Mosaic(dataset, imgsz=imgsz, p=hyp.mosaic),
+        #CopyPaste(p=hyp.copy_paste),
+        #RandomPerspective(
+        #    degrees=0,
+        #    translate=hyp.translate,
+        #    translate=0,
+        #    scale=0,
+        #    shear=0,
+        #    perspective=0,
+        #    pre_transform=None if stretch else LetterBox(new_shape=(imgsz, imgsz))
+        LetterBox(new_shape=(imgsz, imgsz)
+        )
+    ])
 
     flip_idx = dataset.data.get('flip_idx', None)  # for keypoints augmentation
     if dataset.use_keypoints:
@@ -803,8 +806,9 @@ def v8_transforms(dataset, imgsz, hyp, stretch=False):
     #    RandomFlip(direction='vertical', p=hyp.flipud),
     #    RandomFlip(direction='horizontal', p=hyp.fliplr, flip_idx=flip_idx)])  # transforms
     transform = Compose([
-        pre_transform,
-        MixUp(dataset, pre_transform=pre_transform, p=hyp.mixup),
+        #pre_transform,
+        #MixUp(dataset, pre_transform=pre_transform, p=hyp.mixup),
+        LetterBox(new_shape=(imgsz, imgsz)),
         RandomFlip(direction='vertical', p=hyp.flipud),
         RandomFlip(direction='horizontal', p=hyp.fliplr, flip_idx=flip_idx)])  # transforms
     
