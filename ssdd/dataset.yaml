@@ -1,0 +1,20 @@
+# Example usage: python train.py --data ssdd.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── ssdd  ← downloads here (7 MB)
+
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../datasets/ssdd # dataset root dir
+train: train/images # train images (relative to 'path')
+val: valid/images   # val images (relative to 'path')
+test: # test images (optional)
+
+# Classes
+names:
+  0: ship
+
+
+# Download script/URL (optional)
+download: https://github.com/fedric95/YoloTests/raw/main/ssdd.zip
