@@ -1,11 +1,14 @@
-from ultralytics import YOLO
 import matplotlib.pyplot as plt
 import pdb
 
-#os.environ["NEPTUNE_API_TOKEN"] = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiIwMzEyZDhiMC0xZWIxLTRjYzctODcxMi04ZmUyYzc1MmQ1ZDQifQ=="
-#os.environ["NEPTUNE_PROJECT"]   = "federico.ricciuti/YOLOv8"
+from ultralytics import YOLO
+import ultralytics.yolo.engine.model 
+from trainer import CustomTrainer
 
-model = YOLO('./model.yaml')     # Build from YAML 
+    
+ultralytics.yolo.engine.model.TASK_MAP['detect'][1] = CustomTrainer
+
+model = YOLO('./model.yaml', task = 'detect')     # Build from YAML
 model = model.load('yolov8n.pt') # Transfer weights
 
 # Train the model
