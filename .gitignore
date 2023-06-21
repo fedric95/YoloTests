@@ -164,3 +164,4 @@ datasets/
 runs/
 YOLOX_outputs/
 coco_style/
+work_dirs/
